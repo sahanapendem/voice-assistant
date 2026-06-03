@@ -120,7 +120,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ─── NAVIGATION ROW HEADER (UPDATED BRANDING BRAND NAME HERE) ───
+# ─── NAVIGATION ROW HEADER ───
 st.markdown("""
     <div class="nav-container">
         <div class="brand-logo">VOICE <span>ASSES</span></div>
@@ -140,11 +140,9 @@ if "audio_path" not in st.session_state:
 left_col, right_col = st.columns([1.1, 0.9], gap="large")
 
 with left_col:
-    # Large High-End Graphic Headline Elements
     st.markdown('<p class="hero-title">The Future of<br>Artificial Assistant</p>', unsafe_allow_html=True)
     st.markdown('<p class="hero-subtitle">Empowering the next generation of intelligent systems with seamless voice capture, real-time query tracking, and contextual automation feedback layouts.</p>', unsafe_allow_html=True)
     
-    # Core Operations Controller Module Frame
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.write("### 🎛️ System Automation Console")
     
@@ -158,7 +156,6 @@ with left_col:
                 if user_speech:
                     st.success(f"Successfully Transcribed: \"{user_speech}\"")
                     
-                    # Voice Routing Matrix
                     if "time" in user_speech:
                         st.session_state.assistant_text = get_time()
                     elif "weather" in user_speech or "temperature" in user_speech:
@@ -185,7 +182,6 @@ with left_col:
             if text_input:
                 cmd = text_input.lower().strip()
                 
-                # Text Input Routing Matrix
                 if "time" in cmd:
                     st.session_state.assistant_text = get_time()
                     
@@ -212,7 +208,6 @@ with left_col:
     st.markdown('</div>', unsafe_allow_html=True)
 
 with right_col:
-    # Interactive Status Tracker Cards Design
     st.markdown("""
         <div class="glass-card glow-card">
             <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: #52b788; font-weight: 700; margin-bottom: 5px;">Active Node Tracking</div>
@@ -220,7 +215,6 @@ with right_col:
         </div>
     """, unsafe_allow_html=True)
     
-    # Real-Time Decoded Display Framework Component
     st.markdown(f"""
         <div class="glass-card" style="margin-top: -10px;">
             <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 5px;">Realtime Decoded Text Matrix:</p>
@@ -230,7 +224,6 @@ with right_col:
         </div>
     """, unsafe_allow_html=True)
 
-    # Embedded Audio Integration Frame Panel
     if st.session_state.audio_path and os.path.exists(st.session_state.audio_path):
         st.markdown('<div class="glass-card" style="padding: 15px !important;">', unsafe_allow_html=True)
         st.write("🔊 **Aural Generation Sync Active**")
