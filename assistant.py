@@ -6,8 +6,7 @@ from bs4 import BeautifulSoup
 import datetime
 
 def listen_command():
-    """Captures microphone audio from local machine. 
-    Note: On cloud hosting like Streamlit, standard microphone access requires HTTPS."""
+    """Captures microphone audio from your local system."""
     r = sr.Recognizer()
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source, duration=1)
@@ -19,14 +18,14 @@ def listen_command():
             return ""
 
 def speak(text):
-    """Generates an MP3 file using gTTS and returns the filename."""
+    """Generates a text-to-speech MP3 file cleanly."""
     tts = gTTS(text=text, lang='en')
     filename = "response.mp3"
     tts.save(filename)
     return filename
 
 def get_weather(city="Hyderabad"):
-    """Fetches simple live weather descriptions via scraping."""
+    """Live weather scraper function."""
     try:
         url = f"https://www.google.com/search?q=weather+in+{city}"
         headers = {'User-Agent': 'Mozilla/5.0'}
@@ -35,10 +34,10 @@ def get_weather(city="Hyderabad"):
         weather = soup.find("div", class_="BNeawe").text
         return f"The current weather in {city} is {weather}."
     except Exception:
-        return "I couldn't fetch the weather updates right now."
+        return f"I couldn't fetch live weather updates for {city} right now."
 
 def get_news():
-    """Fetches trending headlines."""
+    """Live Google news RSS feed processor."""
     try:
         url = "https://news.google.com/rss"
         response = requests.get(url)
@@ -46,10 +45,10 @@ def get_news():
         titles = [item.title.text for item in soup.find_all("item")[:3]]
         return "Here are the top headlines: " + ". ".join(titles)
     except Exception:
-        return "I am currently unable to retrieve the news."
+        return "I am currently unable to retrieve the news headlines."
 
 def set_reminder(task, minutes):
-    """Calculates a future timestamp for user tasks."""
+    """Generates timestamp indicators."""
     now = datetime.datetime.now()
     reminder_time = now + datetime.timedelta(minutes=int(minutes))
-    return f"Reminder set for '{task}' at {reminder_time.strftime('%H:%M')}."
+    return f"Reminder configured for '{task}' at {reminder_time.strftime('%H:%M')}."
