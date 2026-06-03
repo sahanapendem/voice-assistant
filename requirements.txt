@@ -1,0 +1,6 @@
+SpeechRecognition
+beautifulsoup4
+gTTS
+pygame
+lxml
+requests
