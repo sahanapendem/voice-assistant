@@ -1,7 +1,0 @@
-streamlit
-SpeechRecognition
-requests
-beautifulsoup4
-gTTS
-pygame
-lxml
